@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Helper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="clocks-container">
+    <div class="top-clocks">
+        <div class="clock-wrapper" id="hour-clock-wrapper">
+            <div class="clock-label">Hours</div>
+            <div class="clock" id="hour-clock">
+                <div class="clock-face">
+                    <div class="hand hour-hand"></div>
+                    <div class="center-circle"></div>
+                    <div class="number number1">1</div>
+                    <div class="number number2">2</div>
+                    <div class="number number3">3</div>
+                    <div class="number number4">4</div>
+                    <div class="number number5">5</div>
+                    <div class="number number6">6</div>
+                    <div class="number number7">7</div>
+                    <div class="number number8">8</div>
+                    <div class="number number9">9</div>
+                    <div class="number number10">10</div>
+                    <div class="number number11">11</div>
+                    <div class="number number12">12</div>
+                </div>
+            </div>
+        </div>
+        <div class="clock-wrapper" id="minute-clock-wrapper">
+            <div class="clock-label">Minutes</div>
+            <div class="clock" id="minute-clock">
+                <div class="clock-face">
+                    <div class="hand minute-hand"></div>
+                    <div class="center-circle"></div>
+                    <div class="number number1">5</div>
+                    <div class="number number2">10</div>
+                    <div class="number number3">15</div>
+                    <div class="number number4">20</div>
+                    <div class="number number5">25</div>
+                    <div class="number number6">30</div>
+                    <div class="number number7">35</div>
+                    <div class="number number8">40</div>
+                    <div class="number number9">45</div>
+                    <div class="number number10">50</div>
+                    <div class="number number11">55</div>
+                    <div class="number number12">0</div>
+                </div>
+            </div>
+        </div>
+        <div class="clock-wrapper" id="second-clock-wrapper">
+            <div class="clock-label">Seconds</div>
+            <div class="clock" id="second-clock">
+                <div class="clock-face">
+                    <div class="hand second-hand"></div>
+                    <div class="center-circle"></div>
+                    <div class="number number1">5</div>
+                    <div class="number number2">10</div>
+                    <div class="number number3">15</div>
+                    <div class="number number4">20</div>
+                    <div class="number number5">25</div>
+                    <div class="number number6">30</div>
+                    <div class="number number7">35</div>
+                    <div class="number number8">40</div>
+                    <div class="number number9">45</div>
+                    <div class="number number10">50</div>
+                    <div class="number number11">55</div>
+                    <div class="number number12">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="full-clock-wrapper" class="clock-wrapper">
+        <div class="clock-label">Full Clock</div>
+        <div class="clock" id="full-clock">
+            <div class="clock-face">
+                <div class="hand hour-hand"></div>
+                <div class="hand minute-hand"></div>
+                <div class="hand second-hand"></div>
+                <div class="center-circle"></div>
+                <div class="number number1">1</div>
+                <div class="number number2">2</div>
+                <div class="number number3">3</div>
+                <div class="number number4">4</div>
+                <div class="number number5">5</div>
+                <div class="number number6">6</div>
+                <div class="number number7">7</div>
+                <div class="number number8">8</div>
+                <div class="number number9">9</div>
+                <div class="number number10">10</div>
+                <div class="number number11">11</div>
+                <div class="number number12">12</div>
+            </div>
+        </div>
+    </div>
+        <div id="digital-date-container">
+            <div class="box-label"></div>
+            <div class="box-content" id="date-container">
+                <h1 id="date"></h1>
+            </div>
+        </div>
+    </div>
+        <div id="digital-clock-container">
+            <div class="box-label"></div>
+            <div class="box-content" id="digital-time-container">
+                <!-- Display time here -->
+                <h1 id="time"></h1>
+                <span class="digital-seconds"></span>
+            </div>
+        </div>
+    </div>
+        <div class="button-container">
+        <button id="toggle-clock">Toggle Faces</button>
+        <button id="toggle-seconds">Show/Hide Seconds</button>
+        <button id="toggle-date">Show/Hide Date</button>
+        <button id="toggle-digital">Show/Hide Digital Clock</button>
+        <button id="toggle-theme">Change Theme</button>
+    </div>
+
+<div class="text-box">Read time as you would on a Digital Clock</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+:root {
+    --clock-size: 13.5vw;
+    --background-color: #f0f0f0;
+    --border-color: #333;
+    --font-color: #333;
+    --hour-hand-color: #ff6347;
+    --minute-hand-color: #4682b4;
+    --second-hand-color: #32cd32;
+    --button-bg-color: #4682b4;
+    --button-hover-bg-color: #315f7b;
+    --dark-bg-color: #333;
+    --dark-font-color: #fff;
+    --dark-button-bg-color: #555;
+    --dark-button-hover-bg-color: #444;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background-color);
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: var(--font-color);
+    padding-top: 60px; /* Adjust this value based on the height of the text box */
+}
+
+#digital-date-container {
+    background-color: var(--background-color);
+    color: var(--font-color);
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    height: 0.5%;
+    width: 300px; /* Set your desired width */
+    transform: translateX(-50%);
+    padding: 0px;
+    text-align: center;
+    z-index: 1;
+    width: 70%; /* Set your desired width */
+    /* Responsive font size */
+    font-size: 1em; /* Adjust as needed */
+    @media (max-width: 600px) {
+    top: 1%;
+    font-size: 0.8em;
+    }
+}
+
+#digital-clock-container {
+    background-color: var(--background-color);
+    color: var(--font-color);
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    height: 0.5%;
+    margin: 4px;
+    transform: translateX(-50%);
+    padding: 0;
+    text-align: center;
+    z-index: 1;
+    font-size: 1em; /* Adjust as needed */
+        @media (max-width: 600px) {
+        top: 8%;
+        font-size: 0.9em;}
+    border: 0; /* Absolutely no border! */
+}
+
+.text-box {
+    font-family: 'Roboto', sans-serif;
+    position: fixed;
+    top: 2%;
+    height: 4%;
+    width: 60%;
+    font-size: 1.2em;
+    color: white;
+    background-color: var(--button-bg-color);
+    padding: 10px;
+    border: 1px solid #000;
+    text-align: center;
+    justify-content: center;
+    vertical-align: middle;
+    z-index: 1000;
+    @media (max-width: 600px) {
+    width: 80%;
+    }
+    }
+
+.text-box:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+
+h1.main-heading {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: var(--font-color);
+}
+
+.clocks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.top-clocks {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+
+.clock-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.clock {
+    width: var(--clock-size);
+    height: var(--clock-size);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #fff, #ddd);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.clock-face {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.center-circle {
+    position: absolute;
+    width: 5%;
+    height: 5%;
+    background: var(--border-color);
+    border-radius: 50%;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.marker {
+    position: absolute;
+    width: 0.5%;
+    height: 2%;
+    background: var(--border-color);
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+    transform: translate(-50%, -50%) rotate(var(--rotate-angle)) translateY(calc(-50% - var(--clock-size) / 2 + 85%));
+}
+
+.hour-marker {
+    width: 1%;
+    height: 2.5%;
+    background: var(--border-color);
+}
+
+.minute-marker {
+    width: 0.5%;
+    height: 2%;
+    background: var(--border-color);
+}
+
+.hand {
+    width: 50%;
+    height: 0.5%;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0% 50%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 2.3, 0.3, 1);
+}
+
+.hand::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 1% solid transparent;
+    border-right: 1% solid transparent;
+    border-bottom: 2% solid inherit;
+    top: -1%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hour-hand {
+    width: 33%;
+    height: 2%;
+    background: var(--hour-hand-color);
+    border-radius: 50%;
+}
+
+.minute-hand {
+    width: 40%;
+    height: 1.5%;
+    background: var(--minute-hand-color);
+    border-radius: 50%;
+}
+
+.second-hand {
+    width: 48%;
+    height: 1%;
+    background: var(--second-hand-color);
+}
+
+.number {
+    position: absolute;
+    color: var(--font-color);
+    font-size: calc(var(--clock-size) / 12);
+    transform: translate(-50%, -50%);
+}
+
+.number1 { top: 15%; left: 72%; }
+.number2 { top: 28%; left: 85%; }
+.number3 { top: 50%; left: 92%; }
+.number4 { top: 71%; left: 86%; }
+.number5 { top: 85%; left: 72%; }
+.number6 { top: 92%; left: 50%; }
+.number7 { top: 85%; left: 28%; }
+.number8 { top: 71%; left: 14%; }
+.number9 { top: 50%; left: 8%; }
+.number10 { top: 28%; left: 15%; }
+.number11 { top: 15%; left: 28%; }
+.number12 { top: 8%; left: 50%; }
+
+.clock-label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    text-align: center;
+    color: var(--font-color);
+}
+
+/* Your existing button styles */
+button {
+    margin-top: 10px;
+        padding: 10px 10px;
+        font-size: 1em;
+        color: white;
+        background-color: var(--button-bg-color);
+        width: auto;
+        max-width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        height: 40px;
+        Width: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Add this line to center the text horizontally */
+}
+
+button:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+/* Center buttons horizontally */
+.button-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    gap: 3px; /* Adjust as needed */
+
+    /* Media query for smaller screens (e.g., mobile) */
+    @media (max-width: 900px) {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center vertically */
+    }
+}
+
+
+@media (max-width: 650px) {
+    :root {
+        --clock-size: 25vw; /* Adjust as needed */
+    }
+}
+
+
+body.dark-theme {
+    background-color: var(--dark-bg-color);
+    color: var(--dark-font-color);
+}
+
+body.dark-theme .text-box,
+body.dark-theme .clock-label,
+body.dark-theme .number {
+    color: var(--dark-font-color);
+}
+
+body.dark-theme .marker,
+body.dark-theme .hour-marker,
+body.dark-theme .minute-marker {
+    background: var(--dark-font-color);
+}
+
+body.dark-theme .text-box {
+    background-color: var(--dark-button-bg-color);
+}
+
+body.dark-theme .text-box:hover {
+    background-color: var(--dark-button-hover-bg-color);
+}
+
+body.dark-theme .clock {
+    border-color: var(--dark-font-color);
+    background: radial-gradient(circle, #555, #333);
+}
+
+body.dark-theme .center-circle {
+    background: var(--dark-font-color);
+}
+
+body.dark-theme .hand {
+    background: transparent;
+}
+
+body.dark-theme .hour-hand {
+    background: var(--hour-hand-color);
+}
+
+body.dark-theme .minute-hand {
+    background: var(--minute-hand-color);
+}
+
+body.dark-theme .second-hand {
+    background: var(--second-hand-color);
+}
+
+body.dark-theme button {
+    background-color: var(--dark-button-bg-color);
+    color: var(--dark-font-color);
+}
+
+body.dark-theme #digital-date-container,
+body.dark-theme #digital-time-container {
+    background-color: var(--dark-bg-color);
+    border-color:var(--dark-bg-color);
+    color: var(--dark-font-color);
+}
+
+body.dark-theme button:hover {
+    background-color: var(--dark-button-hover-bg-color);
+}
+
