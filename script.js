@@ -129,39 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 });
-// Toggle digital clock visibility
-let digitalClockVisible = false; // Initially hidden
 
-// Hide the clock initially
-document.addEventListener('DOMContentLoaded', function() {
-    const digitalClock = document.getElementById('digital-clock-container');
-    const digitalText = document.getElementById('date-time');
-    digitalClock.style.display = 'none';
-    digitalText.style.display = 'none';
-});
-
-document.getElementById('toggle-digital').addEventListener('click', function() {
-    const digitalClock = document.getElementById('digital-clock-container');
-    const digitalText = document.getElementById('date-time'); // Get the digital clock text
-
-    // Toggle visibility
-    digitalClockVisible = !digitalClockVisible;
-    digitalClock.style.display = digitalClockVisible ? 'flex' : 'none';
-    digitalText.style.display = digitalClockVisible ? 'block' : 'none'; // Hide/show the digital clock text
-});
-
- // Toggle digital date visibility
- let digitalDateVisible = true; // Initially visible
-
- document.getElementById('toggle-date').addEventListener('click', function() {
-     const digitalDateContainer = document.getElementById('date-container');
-     const digitalDateText = document.getElementById('date'); // Get the digital date text
-
-     // Toggle visibility
-     digitalDateVisible = !digitalDateVisible;
-     digitalDateContainer.style.display = digitalDateVisible ? 'block' : 'none';
-     digitalDateText.style.display = digitalDateVisible ? 'block' : 'none'; // Hide/show the digital date text
- });
 
 // script.js
 window.addEventListener("load", () => {
@@ -169,9 +137,22 @@ window.addEventListener("load", () => {
     const toggleButton = document.getElementById("toggle-digital");
 
     toggleButton.addEventListener("click", () => {
-        timeFormatState = (timeFormatState + 1) % 3; // Cycle between 0, 1, and 2
+        timeFormatState = (timeFormatState === 2) ? 0 : timeFormatState + 1; // Cycle between 0, 1, and 2
         updateDigitalClock();
-    });
+        });
+
+ // Toggle digital date visibility
+     let digitalDateVisible = true; // Initially visible
+
+     document.getElementById('toggle-date').addEventListener('click', function() {
+             const digitalDateContainer = document.getElementById('date-container');
+             const digitalDateText = document.getElementById('date'); // Get the digital date text
+
+ // Toggle visibility
+             digitalDateVisible = !digitalDateVisible;
+             digitalDateContainer.style.display = digitalDateVisible ? 'block' : 'none';
+             digitalDateText.style.display = digitalDateVisible ? 'block' : 'none'; // Hide/show the digital date text
+ });
 
     function updateDigitalClock() {
         const now = new Date();
