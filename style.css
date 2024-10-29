@@ -45,7 +45,7 @@ body {
     width: 70%; /* Set your desired width */
     /* Responsive font size */
     font-size: 1em; /* Adjust as needed */
-    @media (max-width: 600px) {
+    @media (max-width: 650px) {
     top: 1%;
     font-size: 0.6em;
     }
@@ -64,7 +64,7 @@ body {
     text-align: center;
     z-index: 1;
     font-size: 1em; /* Adjust as needed */
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
         top: 8%;
         font-size: 0.6em;}
     border: 0; /* Absolutely no border! */
@@ -88,6 +88,7 @@ body {
     z-index: 1000;
     @media (max-width: 600px) {
         width: 80%;
+        font-size: 0.9em;
     }
 }
 
@@ -111,8 +112,8 @@ h1.main-heading {
 .top-clocks {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     flex-wrap: wrap;
 }
 
@@ -246,7 +247,7 @@ h1.main-heading {
 .clock-label {
     font-family: 'Roboto', sans-serif;
     font-size: 1.2em;
-    @media (max-width: 600px) {
+    @media (max-width: 650px) {
     font-size: 0.8em;
     }
     margin-bottom: 5px;
@@ -257,8 +258,7 @@ h1.main-heading {
 /* Your existing button styles */
 button {
     margin-top: 10px;
-        padding: 10px 10px;
-        font-size: 1em;
+        padding: 5px 5px;
         color: white;
         background-color: var(--button-bg-color);
         width: auto;
@@ -270,6 +270,10 @@ button {
         display: flex;
         align-items: center;
         justify-content: center; /* Add this line to center the text horizontally */
+        font-size: 1em;
+         @media (max-width: 900px) {
+         font-size: 0.8em;
+         }
 }
 
 button:hover {
@@ -278,6 +282,7 @@ button:hover {
 
 /* Center buttons horizontally */
 .button-container {
+    margin-top: 20px;
     display: flex;
     justify-content: center; /* Center horizontally */
     gap: 3px; /* Adjust as needed */
@@ -286,6 +291,7 @@ button:hover {
     @media (max-width: 900px) {
         flex-direction: column; /* Stack buttons vertically */
         align-items: center; /* Center vertically */
+        gap: 3px; /* Adjust as needed */
     }
 }
 
