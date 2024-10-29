@@ -74,21 +74,22 @@ body {
     font-family: 'Roboto', sans-serif;
     position: fixed;
     top: 2%;
-    height: 6%;
+    height: 5%;
     width: 60%;
     font-size: 1.2em;
     color: white;
     background-color: var(--button-bg-color);
     padding: 10px;
     border: 1px solid #000;
-    text-align: center;
-    justify-content: center;
-    vertical-align: middle;
+    text-align: center; /* Horizontally center text */
+    display: flex; /* Use flexbox */
+    align-items: center; /* Vertically center items */
+    justify-content: center; /* Horizontally center items */
     z-index: 1000;
     @media (max-width: 600px) {
-    width: 80%;
+        width: 80%;
     }
-    }
+}
 
 .text-box:hover {
     background-color: var(--button-hover-bg-color);
