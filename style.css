@@ -350,10 +350,11 @@ body.dark-theme button {
 }
 
 body.dark-theme #digital-date-container,
-body.dark-theme #digital-time-container {
+body.dark-theme #digital-clock-container {
     background-color: var(--dark-bg-color);
-    border-color:var(--dark-bg-color);
     color: var(--dark-font-color);
+    border: none; /* Ensure no border */
+    outline: none; /* Ensure no outline */
 }
 
 body.dark-theme button:hover {
