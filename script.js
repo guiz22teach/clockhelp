@@ -38,55 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setClock(document.getElementById('full-clock'), 'full');
     }
 
-// script.js
-window.addEventListener("load", () => {
-    updateDigitalClock();
 
-    function updateDigitalClock() {
-        const now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        const seconds = now.getSeconds();
-
-        // Add '0' to hour, minute, and second when they are less than 10
-        const hour = hours < 10 ? "0" + hours : hours;
-        const minute = minutes < 10 ? "0" + minutes : minutes;
-        const second = seconds < 10 ? "0" + seconds : seconds;
-
-        // Calculate 12-hour time format
-        const hourTime = hour > 12 ? hour - 12 : hour;
-        const ampm = hour < 12 ? "am" : "pm";
-
-        // Get current date and time
-        const date = now.toLocaleDateString();
-        const time = hourTime + ":" + minute + (toggleSecondsDisplay() ? ":" + second : "") + " " + ampm;
-
-        // Get the day of the week
-        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const dayOfWeek = daysOfWeek[now.getDay()]; // 0 = Sunday, 1 = Monday, ...
-
-        // Print current date, time, and day of the week to the DOM
-        document.getElementById("time").textContent = time; // Display time first
-        document.getElementById("date").textContent = `${dayOfWeek}, ${date}`; // Display date and day of the week
-
-        // Update every second
-        setTimeout(updateDigitalClock, 1000);
-    }
-
-    function toggleSecondsDisplay() {
-        return document.querySelector(".digital-seconds").style.display === "block";
-    }
-
-    // Call the function immediately to display seconds from the start
-    const digitalSeconds = document.querySelector(".digital-seconds");
-    digitalSeconds.style.display = "block"; // Show seconds initially
-
-    // Toggle seconds display
-    const toggleButton = document.getElementById("toggle-seconds");
-    toggleButton.addEventListener("click", () => {
-        digitalSeconds.style.display = toggleSecondsDisplay() ? "none" : "block";
-    });
-});
 
  function hideTextBox() {
         const textBox = document.querySelector('.text-box');
@@ -210,3 +162,71 @@ document.getElementById('toggle-digital').addEventListener('click', function() {
      digitalDateContainer.style.display = digitalDateVisible ? 'block' : 'none';
      digitalDateText.style.display = digitalDateVisible ? 'block' : 'none'; // Hide/show the digital date text
  });
+
+// script.js
+window.addEventListener("load", () => {
+    let timeFormatState = 0; // 0: none, 1: 12-hour, 2: 24-hour
+    const toggleButton = document.getElementById("toggle-digital");
+
+    toggleButton.addEventListener("click", () => {
+        timeFormatState = (timeFormatState + 1) % 3; // Cycle between 0, 1, and 2
+        updateDigitalClock();
+    });
+
+    function updateDigitalClock() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+
+        // Add '0' to hour, minute, and second when they are less than 10
+        const hour = hours < 10 ? "0" + hours : hours;
+        const minute = minutes < 10 ? "0" + minutes : minutes;
+        const second = seconds < 10 ? "0" + seconds : seconds;
+
+        // Calculate 12-hour time format
+        const hour12 = hours % 12 || 12;
+        const ampm = hours < 12 ? "am" : "pm";
+        const time12Hour = hour12 + ":" + minute + (toggleSecondsDisplay() ? ":" + second : "") + " " + ampm;
+
+        // Calculate 24-hour time format
+        const time24Hour = hour + ":" + minute + (toggleSecondsDisplay() ? ":" + second : "");
+
+        // Get current date and time
+        const date = now.toLocaleDateString();
+        let time = "";
+        if (timeFormatState === 1) {
+            time = time12Hour;
+        } else if (timeFormatState === 2) {
+            time = time24Hour;
+        }
+
+        // Get the day of the week
+        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const dayOfWeek = daysOfWeek[now.getDay()]; // 0 = Sunday, 1 = Monday, ...
+
+        // Print current date, time, and day of the week to the DOM
+        document.getElementById("time").textContent = time; // Display time in the chosen format
+        document.getElementById("date").textContent = `${dayOfWeek}, ${date}`; // Display date and day of the week
+
+        // Update every second
+        setTimeout(updateDigitalClock, 1000);
+    }
+
+    function toggleSecondsDisplay() {
+        return document.querySelector(".digital-seconds").style.display === "block";
+    }
+
+    // Call the function immediately to display seconds from the start
+    const digitalSeconds = document.querySelector(".digital-seconds");
+    digitalSeconds.style.display = "block"; // Show seconds initially
+
+    // Toggle seconds display
+    const toggleSecondsButton = document.getElementById("toggle-seconds");
+    toggleSecondsButton.addEventListener("click", () => {
+        digitalSeconds.style.display = toggleSecondsDisplay() ? "none" : "block";
+    });
+
+    // Initial call to set the clock immediately
+    updateDigitalClock();
+});
